@@ -13,7 +13,7 @@ export function PostDetails() {
   const [postData, setPostData] = useRecoilState<Post>(
     PostItemStateData
   );
-  const { loading, data, errorAPI } = useAPI<Post>(
+  const { loading, data, errorAPI, reload } = useAPI<Post>(
     `https://bloggy-api.herokuapp.com/posts/${postID}`
   );
 
@@ -41,7 +41,7 @@ export function PostDetails() {
           <p className="text-lg">{postData.body}</p>
           <div className="flex justify-between ">
             <PostDeleter postId={postID} />
-            <PostUpdater postId={postID} />
+            <PostUpdater data={postData} reload={reload} />
           </div>
         </div>
         <Comments postId={postID} />

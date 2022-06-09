@@ -2,10 +2,14 @@ import { useAPI } from "../../hooks/useAPI.hook";
 import { CommentsList } from "./CommentsList.component";
 import { Comment } from "../../typing/types/Comment.type";
 import ButtonWrapper from "../../templates/ButtonWrapper.template";
+import { CommentCreator } from "./CommentCreator.component";
 
 function Comments(props: { postId: string }) {
   const { postId } = props;
-  const { loading, data, errorAPI } = useAPI<Comment[]>(`
+
+  const { loading, data, errorAPI, reload } = useAPI<
+    Comment[]
+  >(`
     https://bloggy-api.herokuapp.com/comments/?postId=${postId}
   `);
 
@@ -22,8 +26,10 @@ function Comments(props: { postId: string }) {
           Comments {data.length}:
         </h3>
       </div>
-
-      <CommentsList data={data} />
+      <div className="flex justify-between basis-1/2 relative">
+        <CommentsList data={data} />
+        <CommentCreator reload={reload} postId={postId} />
+      </div>
     </section>
   );
 }

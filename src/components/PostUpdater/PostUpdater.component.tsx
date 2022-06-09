@@ -5,12 +5,10 @@ import { PostForm } from "../../typing/types/PostForm.type";
 import axios from "axios";
 import ButtonWrapper from "../../templates/ButtonWrapper.template";
 export function PostUpdater(props: {
-  postId: number | string;
+  data: Post;
+  reload: () => void;
 }) {
-  const { postId } = props;
-  const { loading, data, errorAPI, reload } = useAPI<Post>(
-    `https://bloggy-api.herokuapp.com/posts/${postId}`
-  );
+  const { data, reload } = props;
   const [formPost, setFormPost] = useState<PostForm>({
     title: "",
     body: "",
@@ -18,9 +16,15 @@ export function PostUpdater(props: {
   function onSubmit(e: FormEvent) {
     e.preventDefault();
     updatePost(
-      `https://bloggy-api.herokuapp.com/posts/${postId}`,
+      `https://bloggy-api.herokuapp.com/posts/${data.id}`,
       formPost
-    );
+    ).then((res) => {
+      if (res.status === 200) {
+        console.log(res);
+        reload();
+      }
+    });
+
     console.log(formPost);
   }
   useEffect(() => {
@@ -70,6 +74,6 @@ export function PostUpdater(props: {
   );
 }
 
-async function updatePost(url: string, data: PostForm) {
-  return await axios.put(url, data);
+function updatePost(url: string, data: PostForm) {
+  return axios.put(url, data);
 }

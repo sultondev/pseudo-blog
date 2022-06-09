@@ -1,6 +1,6 @@
 import ButtonWrapper from "../../templates/ButtonWrapper.template";
 import axios from "axios";
-import { FormEvent, useState } from "react";
+import { FormEvent, useState, ChangeEvent } from "react";
 import { PostForm } from "../../typing/types/PostForm.type";
 
 export function PostCreator(props: { reload: () => void }) {
@@ -21,13 +21,28 @@ export function PostCreator(props: { reload: () => void }) {
         console.log(res);
         if (res.status === 201) {
           reload();
+          setFormPost({ title: "", body: "" });
         }
       })
       .catch((error) => {
         setError(error);
       });
-    console.log("onSUbmit rendered");
   }
+
+  function handleChange(
+    e:
+      | ChangeEvent<HTMLInputElement>
+      | ChangeEvent<HTMLTextAreaElement>
+  ) {
+    e.preventDefault();
+    setFormPost((prevState) => {
+      return {
+        ...prevState,
+        [e.target.name]: e.target.value,
+      };
+    });
+  }
+
   if (error) {
     return <div className="">Error</div>;
   }
@@ -37,15 +52,7 @@ export function PostCreator(props: { reload: () => void }) {
         <input
           type="text"
           name="title"
-          id=""
-          onChange={(e) => {
-            setFormPost((prevState) => {
-              return {
-                ...prevState,
-                title: e.target.value,
-              };
-            });
-          }}
+          onChange={handleChange}
           value={formPost.title}
           placeholder="Enter, the title"
           className="border-2 border-black w-full"
@@ -53,12 +60,7 @@ export function PostCreator(props: { reload: () => void }) {
         />
         <textarea
           name="body"
-          id=""
-          onChange={(e) => {
-            setFormPost((prevState) => {
-              return { ...prevState, body: e.target.value };
-            });
-          }}
+          onChange={handleChange}
           cols={30}
           value={formPost.body}
           rows={8}

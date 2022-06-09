@@ -39,7 +39,11 @@ export function PostDeleter(props: {
     navigate({ pathname: "/posts" });
   }
   return (
-    <ButtonWrapper className="delete-btn" onClick={onClick}>
+    <ButtonWrapper
+      className="delete-btn"
+      onClick={onClick}
+      height="40px"
+    >
       Delete
     </ButtonWrapper>
   );

@@ -4,7 +4,7 @@ import UserImg from "../../assets/media/images/user-icon.svg";
 export function CommentsList(props: { data: Comment[] }) {
   const { data } = props;
   return (
-    <ul className="comments-list flex flex-col gap-10 py-4">
+    <ul className="comments-list flex items-end flex-col-reverse gap-10 py-4">
       {data.map((item) => {
         return (
           <li
@@ -18,9 +18,7 @@ export function CommentsList(props: { data: Comment[] }) {
                 className="w-10"
               />
               <h4 className="comments-list__name mr-8">
-                {item?.userName
-                  ? item.userName
-                  : "anonymous"}
+                {item?.name ? item.name : "anonymous"}
               </h4>
               {item?.email ? (
                 <a href={`mail: ${item}`}>{item.email}</a>
