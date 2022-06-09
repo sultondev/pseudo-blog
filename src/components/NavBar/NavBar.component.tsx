@@ -8,21 +8,12 @@ function NavBar() {
         <nav className="nav">
           <ul className="nav-list flex justify-between">
             <li className="nav-list__item">Logo</li>
-            <li className="nav-list__item flex justify-between basis-1/2">
+            <li className="nav-list__item flex justify-between basis-1/3">
               <Link to="/">
                 <ButtonWrapper>Home</ButtonWrapper>
               </Link>
               <Link to="/posts">
                 <ButtonWrapper>Posts</ButtonWrapper>
-              </Link>
-              <Link to="/">
-                <ButtonWrapper>other links</ButtonWrapper>
-              </Link>
-              <Link to="/">
-                <ButtonWrapper>other links</ButtonWrapper>
-              </Link>
-              <Link to="/">
-                <ButtonWrapper>other links</ButtonWrapper>
               </Link>
               <Link to="/">
                 <ButtonWrapper>other links</ButtonWrapper>
@@ -37,7 +28,7 @@ function NavBar() {
                 href="#"
                 className="nav-list__reg"
               >
-                Regstrate
+                Registrate
               </ButtonWrapper>
             </li>
           </ul>
