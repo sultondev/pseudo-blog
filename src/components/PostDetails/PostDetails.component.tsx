@@ -24,24 +24,30 @@ export function PostDetails() {
   });
 
   if (errorAPI) {
-    return <div className="">Error</div>;
+    return <div className="container mx-auto">Error</div>;
   } else if (loading || !postData || !postID) {
-    return <div className="">Loading...</div>;
+    return (
+      <div className="container mx-auto">Loading...</div>
+    );
   }
 
   return (
     <section className="details">
-      <div className="container mx-auto">
-        <div className="my-20">
-          <h2 className="details__header">Post Details</h2>
-          <h3 className="text-[40px] mb-5">
-            {postData.title}
-          </h3>
+      <div className="container mx-auto w-full">
+        <h2 className="details__header">Post Details</h2>
+        <div className="my-20 flex basis-2/4 flex-wrap w-full">
+          <article className="flex flex-col basis-1/2">
+            <h3 className="text-[40px] mb-5">
+              {postData.title}
+            </h3>
+            <p className="text-lg">{postData.body}</p>
+          </article>
 
-          <p className="text-lg">{postData.body}</p>
-          <div className="flex justify-between ">
-            <PostDeleter postId={postID} />
+          <div className="flex basis-1/2 place-items-start justify-end">
             <PostUpdater data={postData} reload={reload} />
+          </div>
+          <div className="flex justify-between my-10">
+            <PostDeleter postId={postID} />
           </div>
         </div>
         <Comments postId={postID} />

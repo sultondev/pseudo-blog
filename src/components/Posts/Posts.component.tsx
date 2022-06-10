@@ -14,9 +14,11 @@ function Posts() {
   >("https://bloggy-api.herokuapp.com/posts/");
 
   if (errorAPI) {
-    return <div className="">Error</div>;
+    return <div className="container mx-auto">Error</div>;
   } else if (loading || !data) {
-    return <div>Loading...</div>;
+    return (
+      <div className="container mx-auto">Loading...</div>
+    );
   }
 
   return (

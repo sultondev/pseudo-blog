@@ -24,3 +24,13 @@ export const FormPostStateData = atom<Post | any>({
     body: "",
   },
 });
+
+export const EditPostClassStateData = atom<string>({
+  key: "EditPostClassStateData",
+  default: "hidden",
+});
+
+export const CreatePostFormClassStateData = atom<string>({
+  key: "CreatePostFormClassStateData",
+  default: "hidden",
+});
