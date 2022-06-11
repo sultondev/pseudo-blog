@@ -9,16 +9,14 @@ import PostItem from "../../templates/PostItem.template";
 import ButtonWrapper from "../../templates/ButtonWrapper.template";
 import { Link } from "react-router-dom";
 function Posts() {
-  const { loading, data, errorAPI, reload } = useAPI<
-    Post[]
-  >("https://bloggy-api.herokuapp.com/posts/");
+  const { loading, data, errorAPI, reload } = useAPI<Post[]>(
+    "https://bloggy-api.herokuapp.com/posts/"
+  );
 
   if (errorAPI) {
     return <div className="container mx-auto">Error</div>;
   } else if (loading || !data) {
-    return (
-      <div className="container mx-auto">Loading...</div>
-    );
+    return <div className="container mx-auto">Loading...</div>;
   }
 
   return (
@@ -26,26 +24,19 @@ function Posts() {
       <div className="container mx-auto">
         <div className="container relative my-10">
           <h1 className="text-[30px] mb-10">Posts</h1>
-          <ul className="posts-list flex flex-row-reverse gap-5 w-full h-full overflow-x-scroll scroll whitespace-nowrap scroll-smooth">
+          <ul className="posts-list flex flex-row-reverse justify-end gap-5 w-full h-full overflow-x-scroll scroll whitespace-nowrap scroll-smooth">
             {data.map((post) => {
               return (
-                <PostItem
-                  key={post.id}
-                  className="posts-list__item"
-                >
+                <PostItem key={post.id} className="posts-list__item">
                   <article className="posts-list__article">
                     <h4 className="posts-list__title text-[22px] font-semibold mb-7">
                       {post.title}
                     </h4>
-                    <p className="posts-list__body">
-                      {post.body}
-                    </p>
+                    <p className="posts-list__body">{post.body}</p>
                   </article>
 
                   <ButtonWrapper height="auto">
-                    <Link to={`/posts/${post.id}`}>
-                      Open Full Post
-                    </Link>
+                    <Link to={`/posts/${post.id}`}>Open Full Post</Link>
                   </ButtonWrapper>
                 </PostItem>
               );

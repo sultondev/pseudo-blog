@@ -13,10 +13,7 @@ export function PostCreator(props: { reload: () => void }) {
 
   function onSubmit(e: FormEvent) {
     e.preventDefault();
-    makePost(
-      "https://bloggy-api.herokuapp.com/posts/",
-      formPost
-    )
+    makePost("https://bloggy-api.herokuapp.com/posts/", formPost)
       .then((res) => {
         console.log(res);
         if (res.status === 201) {
@@ -30,9 +27,7 @@ export function PostCreator(props: { reload: () => void }) {
   }
 
   function handleChange(
-    e:
-      | ChangeEvent<HTMLInputElement>
-      | ChangeEvent<HTMLTextAreaElement>
+    e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>
   ) {
     e.preventDefault();
     setFormPost((prevState) => {
@@ -55,7 +50,7 @@ export function PostCreator(props: { reload: () => void }) {
           onChange={handleChange}
           value={formPost.title}
           placeholder="Enter, the title"
-          className="border-2 border-black w-full"
+          className="border-2 border-black w-full px-1"
           required
         />
         <textarea
@@ -64,12 +59,10 @@ export function PostCreator(props: { reload: () => void }) {
           cols={30}
           value={formPost.body}
           rows={8}
-          className="border-2 border-black w-full p-2"
+          className="border-2 border-black w-full p-2 min-h-[150px] max-h-[300px]"
           required
         ></textarea>
-        <ButtonWrapper className="w-full">
-          Submit
-        </ButtonWrapper>
+        <ButtonWrapper className="w-full">Submit</ButtonWrapper>
       </div>
     </form>
   );

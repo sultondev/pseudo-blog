@@ -4,10 +4,7 @@ import { useState, useEffect, FormEvent } from "react";
 import { PostForm } from "../../typing/types/PostForm.type";
 import axios from "axios";
 import ButtonWrapper from "../../templates/ButtonWrapper.template";
-export function PostUpdater(props: {
-  data: Post;
-  reload: () => void;
-}) {
+export function PostUpdater(props: { data: Post; reload: () => void }) {
   const { data, reload } = props;
   const [formPost, setFormPost] = useState<PostForm>({
     title: "",
@@ -49,7 +46,7 @@ export function PostUpdater(props: {
           }}
           value={formPost.title}
           placeholder="Enter, the title"
-          className="border-2 border-black w-full"
+          className="border-2 border-black w-full px-1"
           required
         />
         <textarea
@@ -63,12 +60,10 @@ export function PostUpdater(props: {
           cols={30}
           value={formPost.body}
           rows={8}
-          className="border-2 border-black w-full p-2"
+          className="border-2 border-black w-full p-2 min-h-[150px] max-h-[300px]"
           required
         ></textarea>
-        <ButtonWrapper className="w-full">
-          Submit
-        </ButtonWrapper>
+        <ButtonWrapper className="w-full">Submit</ButtonWrapper>
       </div>
     </form>
   );

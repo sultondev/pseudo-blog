@@ -23,11 +23,7 @@ function NavBar() {
               <ButtonWrapper as={"a"} href="#">
                 Log In
               </ButtonWrapper>
-              <ButtonWrapper
-                as={"a"}
-                href="#"
-                className="nav-list__reg"
-              >
+              <ButtonWrapper as={"a"} href="#" className="nav-list__reg">
                 Registrate
               </ButtonWrapper>
             </li>

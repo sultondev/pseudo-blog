@@ -4,17 +4,13 @@ import { useRecoilState } from "recoil";
 import { Post } from "../../typing/types/Post.type";
 import { PostItemStateData } from "../../recoil/atoms";
 import { useAPI } from "../../hooks/useAPI.hook";
-import { useEffect } from "react";
+import { memo, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-export function PostDeleter(props: {
-  postId: number | string;
-}) {
+export const PostDeleter = (props: { postId: number | string }) => {
   const { postId } = props;
   const navigate = useNavigate();
-  const [postData, setPostData] = useRecoilState<Post>(
-    PostItemStateData
-  );
+  const [postData, setPostData] = useRecoilState<Post>(PostItemStateData);
   const { loading, data, errorAPI } = useAPI<Post>(
     `https://bloggy-api.herokuapp.com/posts/${postId}`
   );
@@ -33,22 +29,18 @@ export function PostDeleter(props: {
   console.log(postId);
 
   async function onClick() {
-    await deletePost(
-      `https://bloggy-api.herokuapp.com/posts/${postId}`
-    );
+    await deletePost(`https://bloggy-api.herokuapp.com/posts/${postId}`);
     navigate({ pathname: "/posts" });
   }
   return (
-    <ButtonWrapper
-      className="delete-btn"
-      onClick={onClick}
-      height="40px"
-    >
+    <ButtonWrapper className="delete-btn" onClick={onClick} height="40px">
       Delete
     </ButtonWrapper>
   );
-}
+};
 
 function deletePost(url: string) {
   return axios.delete(url);
 }
+
+export const MemoPostDeleter = memo(PostDeleter);

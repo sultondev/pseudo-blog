@@ -25,8 +25,8 @@ export const FormPostStateData = atom<Post | any>({
   },
 });
 
-export const EditPostClassStateData = atom<string>({
-  key: "EditPostClassStateData",
+export const EditPostFormClassStateData = atom<string>({
+  key: "EditPostFormClassStateData",
   default: "hidden",
 });
 
