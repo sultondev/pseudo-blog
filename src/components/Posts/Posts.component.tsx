@@ -24,7 +24,7 @@ function Posts() {
       <div className="container mx-auto">
         <div className="container relative my-10">
           <h1 className="text-[30px] mb-10">Posts</h1>
-          <ul className="posts-list flex flex-row-reverse justify-end gap-5 w-full h-full overflow-x-scroll scroll whitespace-nowrap scroll-smooth">
+          <ul className="posts-list flex flex-row-reverse gap-5 w-full h-full overflow-x-scroll scroll whitespace-nowrap scroll-smooth">
             {data.map((post) => {
               return (
                 <PostItem key={post.id} className="posts-list__item">
