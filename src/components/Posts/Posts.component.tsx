@@ -35,9 +35,9 @@ function Posts() {
                     <p className="posts-list__body">{post.body}</p>
                   </article>
 
-                  <ButtonWrapper height="auto">
-                    <Link to={`/posts/${post.id}`}>Open Full Post</Link>
-                  </ButtonWrapper>
+                  <Link to={`/posts/${post.id}`}>
+                    <ButtonWrapper height="auto">Open Full Post</ButtonWrapper>
+                  </Link>
                 </PostItem>
               );
             })}
